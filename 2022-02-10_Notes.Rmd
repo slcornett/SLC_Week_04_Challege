@@ -1,0 +1,43 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+**NOTES**
+A toy Fxn
+```{r}
+#x should be a tabular data
+my_function<-function(x, reps=2){
+  for (i in 1:reps){
+    print(x)
+    
+  }
+  for (i in 1:nrow(x)){
+    print(x[i,])
+  }
+  return(NULL)
+}
+
+#this one does not work because issues with value and condition
+```
+
+toy fxn that works
+```{r}
+#x should be tabular data
+#my_function here rewrites the my_function above
+my_function<-function(x, condition){
+  library(tidyverse)
+  x<-x %>% filter(value %in% condition) #filter for the value in the value column of the data frame created above
+  return(x) #is returning x
+}
+```
+
+Calling my_function
+```{r}
+df<-data.frame(rowid=1:5, value=c("a","b","c","d","e"))
+
+my_function(df) #default value of reps used; gives an error b/c no default for condition
+my_function(df, condition = c("c", "e"))
+
+new_df<-my_function(df, condition = c("c", "e"), variable = "value")
+new_df
+```
