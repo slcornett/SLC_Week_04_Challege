@@ -9,6 +9,7 @@ Preliminary
 library(tidyverse)
 library(readr)
 ```
+**Step 1**
 
 New Function
 ```{r}
@@ -16,17 +17,18 @@ load_dictionary<-function(filename){
   w=read.delim(filename)
   w$words
 } 
-
 ```
-
-New Variables
+New Variable: Valid List
 ```{r}
-valid_list<-load_dictionary("google-10000-english-usa-no-swears.txt")
-solution_list <- load_dictionary("google-10000-english-usa-no-swears.txt")
-
+valid_list<-load_dictionary("collins-scrabble-words-2019")
+str(valid_list)
 ```
-
-
+New Variable: Solution List
+```{r}
+solution_list <- load_dictionary("google-10000-english-usa-no-swears.txt")
+str(solution_list)
+```
+**Step 2**
 ```{r}
 
 ```

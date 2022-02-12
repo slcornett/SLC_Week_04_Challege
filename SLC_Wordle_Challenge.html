@@ -182,14 +182,21 @@ pre code {
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>library(readr)</code></pre>
+<p><strong>Step 1</strong></p>
 <p>New Function</p>
 <pre class="r"><code>load_dictionary&lt;-function(filename){
   w=read.delim(filename)
   w$words
 } </code></pre>
-<p>New Variables</p>
-<pre class="r"><code>valid_list&lt;-load_dictionary(&quot;google-10000-english-usa-no-swears.txt&quot;)
-solution_list &lt;- load_dictionary(&quot;google-10000-english-usa-no-swears.txt&quot;)</code></pre>
+<p>New Variable: Valid List</p>
+<pre class="r"><code>valid_list&lt;-load_dictionary(&quot;collins-scrabble-words-2019&quot;)
+str(valid_list)</code></pre>
+<pre><code>##  chr [1:279496] &quot;AA&quot; &quot;AAH&quot; &quot;AAHED&quot; &quot;AAHING&quot; &quot;AAHS&quot; &quot;AAL&quot; &quot;AALII&quot; &quot;AALIIS&quot; ...</code></pre>
+<p>New Variable: Solution List</p>
+<pre class="r"><code>solution_list &lt;- load_dictionary(&quot;google-10000-english-usa-no-swears.txt&quot;)
+str(solution_list)</code></pre>
+<pre><code>##  chr [1:9884] &quot;THE&quot; &quot;OF&quot; &quot;AND&quot; &quot;TO&quot; &quot;A&quot; &quot;IN&quot; &quot;FOR&quot; &quot;IS&quot; &quot;ON&quot; &quot;THAT&quot; &quot;BY&quot; ...</code></pre>
+<p><strong>Step 2</strong></p>
 
 
 
