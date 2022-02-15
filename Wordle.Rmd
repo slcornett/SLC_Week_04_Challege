@@ -11,14 +11,14 @@ library(readr)
 ```
 **Step 1**
 
-New Function
+New Function: Load Dictionary
 ```{r}
 load_dictionary<-function(filename){
   w=read.delim(filename)
   w$words
 } 
 ```
-New Variable: Valid List
+New Variable/Vector: Valid List
 ```{r}
 valid_list<-load_dictionary("collins-scrabble-words-2019")
 str(valid_list)
@@ -32,12 +32,16 @@ str(solution_list)
 Solution list including only words in valid list
 ```{r}
 #Intersect(value, value), not intersection('')
-intersect(solution_list, valid_list)
-str(intersect(solution_list, valid_list)) 
+solution_list<-intersect(solution_list, valid_list)
+str(solution_list) 
 ```
 Now, only 8336 words in the list. 
 
 **Step 3**
-```{r}
 
+New Function: Pick Solution
+```{r}
+pick_solution<-function(){
+  sample(solition_list, length(solution_list)<-5) 
+}
 ```
