@@ -29,6 +29,10 @@ solution_list <- load_dictionary("google-10000-english-usa-no-swears.txt")
 str(solution_list)
 ```
 **Step 2**
+Solution list including only words in valid list
 ```{r}
-
+#Intersect(value, value), not intersection('')
+intersect(solution_list, valid_list)
+str(intersect(solution_list, valid_list)) 
 ```
+Now, only 8336 words in the list. 
