@@ -36,3 +36,8 @@ intersect(solution_list, valid_list)
 str(intersect(solution_list, valid_list)) 
 ```
 Now, only 8336 words in the list. 
+
+**Step 3**
+```{r}
+
+```
