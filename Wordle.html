@@ -181,7 +181,8 @@ pre code {
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(readr)</code></pre>
+<pre class="r"><code>library(readr)
+library(dplyr)</code></pre>
 <p><strong>Step 1</strong></p>
 <p>New Function: Load Dictionary</p>
 <pre class="r"><code>load_dictionary&lt;-function(filename){
@@ -204,8 +205,10 @@ str(solution_list) </code></pre>
 <p>Now, only 8336 words in the list.</p>
 <p><strong>Step 3</strong></p>
 <p>New Function: Pick Solution</p>
-<pre class="r"><code>pick_solution&lt;-function(){
-  sample(solition_list, length(solution_list)&lt;-5) 
+<pre class="r"><code>pick_solution&lt;-function(x){
+  x=filter(solution_list, word(length=5L))%&gt;%
+  sample(x)%&gt;%
+    str_split(string, boundary(&quot;&quot;))
 }</code></pre>
 
 

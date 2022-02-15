@@ -8,6 +8,7 @@ Preliminary
 ```{r}
 library(tidyverse)
 library(readr)
+library(dplyr)
 ```
 **Step 1**
 
@@ -41,7 +42,11 @@ Now, only 8336 words in the list.
 
 New Function: Pick Solution
 ```{r}
-pick_solution<-function(){
-  sample(solition_list, length(solution_list)<-5) 
+pick_solution<-function(x){
+  x=filter(solution_list, word(length=5L))%>%
+  sample(x)%>%
+    str_split(string, boundary(""))
 }
+
 ```
+
