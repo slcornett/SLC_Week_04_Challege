@@ -42,11 +42,15 @@ Now, only 8336 words in the list.
 
 New Function: Pick Solution
 ```{r}
-pick_solution<-function(x){
-  x=filter(solution_list, word(length=5L))%>%
-  sample(x)%>%
-    str_split(string, boundary(""))
+pick_solution<-function(solution_list,word_length=5){
+  sl <- as.data.frame(solution_list)
+  names(sl) <- c("word")
+  sl <- dplyr::filter(sl, nchar(word)==word_length)
+  word<-dplyr::sample_n(sl, size=1)
+  word<-word$word %>%
+    strsplit(word, split = "")
+  print(word)
 }
-
+solution <-pick_solution(solution_list, word_length = 5)
 ```
 

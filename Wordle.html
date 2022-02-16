@@ -205,11 +205,18 @@ str(solution_list) </code></pre>
 <p>Now, only 8336 words in the list.</p>
 <p><strong>Step 3</strong></p>
 <p>New Function: Pick Solution</p>
-<pre class="r"><code>pick_solution&lt;-function(x){
-  x=filter(solution_list, word(length=5L))%&gt;%
-  sample(x)%&gt;%
-    str_split(string, boundary(&quot;&quot;))
-}</code></pre>
+<pre class="r"><code>pick_solution&lt;-function(solution_list,word_length=5){
+  sl &lt;- as.data.frame(solution_list)
+  names(sl) &lt;- c(&quot;word&quot;)
+  sl &lt;- dplyr::filter(sl, nchar(word)==word_length)
+  word&lt;-dplyr::sample_n(sl, size=1)
+  word&lt;-word$word %&gt;%
+    strsplit(word, split = &quot;&quot;)
+  print(word)
+}
+solution &lt;-pick_solution(solution_list, word_length = 5)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;A&quot; &quot;L&quot; &quot;B&quot; &quot;U&quot; &quot;M&quot;</code></pre>
 
 
 
