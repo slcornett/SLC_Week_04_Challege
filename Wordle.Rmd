@@ -41,6 +41,9 @@ Now, only 8336 words in the list.
 **Step 3**
 
 New Function: Pick Solution
+[1] removes all words from solution_list that are not 5 letters in length, 
+[2] then randomly chooses a single word from those that remain, and 
+[3] then splits that word into a vector of single-character elements
 ```{r}
 pick_solution<-function(solution_list,word_length=5){
   sl <- as.data.frame(solution_list)
@@ -52,5 +55,24 @@ pick_solution<-function(solution_list,word_length=5){
   print(word)
 }
 solution <-pick_solution(solution_list, word_length = 5)
+```
+
+**Step 4**
+should take three arguments: 
+[1] the answer to the puzzle (the value of your solution variable), 
+[2] a list of valid guesses (the contents of your valid_list variable), and 
+[3] a value for “number of guesses,” which you should set to the original Wordle game default of 6
+```{r}
+play_wordle <- function(solution, valid_list, num_guesses=6){
+#  i<-LETTERS
+ # if (readline(prompt = "")==solution) {
+  #<action 1>
+#} else {
+ # <action 2>
+#}
+  #interactive %>%
+    #readline(prompt = "") %>%
+    #toupper(old, )
+}
 ```
 
