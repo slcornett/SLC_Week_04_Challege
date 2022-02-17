@@ -216,19 +216,43 @@ str(solution_list) </code></pre>
 }
 solution &lt;-pick_solution(solution_list, word_length = 5)</code></pre>
 <pre><code>## [[1]]
-## [1] &quot;O&quot; &quot;C&quot; &quot;E&quot; &quot;A&quot; &quot;N&quot;</code></pre>
+## [1] &quot;M&quot; &quot;A&quot; &quot;R&quot; &quot;C&quot; &quot;H&quot;</code></pre>
 <p><strong>Step 4</strong> should take three arguments: [1] the answer to the puzzle (the value of your solution variable), [2] a list of valid guesses (the contents of your valid_list variable), and [3] a value for “number of guesses,” which you should set to the original Wordle game default of 6</p>
 <pre class="r"><code>play_wordle &lt;- function(solution, valid_list, num_guesses=6){
+  instructions&lt;-&quot;Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!&quot;
+  print(instructions)
+  print(&quot;Letters left:&quot;) 
+  LETTERS
+  guess &lt;- readline(&quot;Please input your word guess, then press Enter/Return to submit your guess:&quot;)
+  toupper(guess)
+  evaluate_guess&lt;-function(guess, solution){
+    i&lt;-guess
+    if_else(i==solution, &quot;*&quot;, &quot;+&quot;, missing=&quot;-&quot;)
+  }
+}
+
+print(play_wordle(solution, valid_list, num_guesses = 6 ))</code></pre>
+<pre><code>## [1] &quot;Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!&quot;
+## [1] &quot;Letters left:&quot;
+## Please input your word guess, then press Enter/Return to submit your guess:
+## function(guess, solution){
+##     i&lt;-guess
+##     if_else(i==solution, &quot;*&quot;, &quot;+&quot;, missing=&quot;-&quot;)
+##   }
+## &lt;environment: 0x7fef8d47d060&gt;</code></pre>
+<pre class="r"><code>#  letters_left&lt;-intersect(LETTERS, solutions)
+ # Print(letters_left)
+  
 #  i&lt;-LETTERS
  # if (readline(prompt = &quot;&quot;)==solution) {
-  #&lt;action 1&gt;
-#} else {
+  #  &lt;action 1&gt;
+#}# else {
  # &lt;action 2&gt;
 #}
   #interactive %&gt;%
     #readline(prompt = &quot;&quot;) %&gt;%
-    #toupper(old, )
-}</code></pre>
+    #toupper(old, )</code></pre>
+<p>if (i==solution){ print(“*“) } else { print(”+“) } else { print(”-“) }</p>
 
 
 
