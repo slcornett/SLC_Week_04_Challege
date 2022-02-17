@@ -216,7 +216,7 @@ str(solution_list) </code></pre>
 }
 solution &lt;-pick_solution(solution_list, word_length = 5)</code></pre>
 <pre><code>## [[1]]
-## [1] &quot;T&quot; &quot;Y&quot; &quot;L&quot; &quot;E&quot; &quot;R&quot;</code></pre>
+## [1] &quot;Y&quot; &quot;O&quot; &quot;U&quot; &quot;T&quot; &quot;H&quot;</code></pre>
 <p><strong>Step 4</strong> should take three arguments: [1] the answer to the puzzle (the value of your solution variable), [2] a list of valid guesses (the contents of your valid_list variable), and [3] a value for “number of guesses,” which you should set to the original Wordle game default of 6.</p>
 <pre class="r"><code>play_wordle &lt;- function(solution, valid_list, num_guesses=6){
   instructions&lt;-&quot;Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!&quot;
@@ -234,19 +234,10 @@ solution &lt;-pick_solution(solution_list, word_length = 5)</code></pre>
       )
     output
     }
-  # setdiff(solution, evaluate_guess, LETTERS)
+ # setdiff(solution, evaluate_guess, LETTERS)
 }
 
-play_wordle(solution, valid_list, num_guesses = 6 )</code></pre>
-<pre><code>## [1] &quot;Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!&quot;
-## [1] &quot;Letters left:&quot;
-## Please input your word guess, then press Enter/Return to submit your guess:</code></pre>
-<p>if (i==solution){ print(“*“) } else { print(”+“) } else { print(”-“) }</p>
-<div id="letters_left-intersectletters-solutions" class="section level1">
-<h1>letters_left&lt;-intersect(LETTERS, solutions)</h1>
-<p># Print(letters_left)</p>
-<p># &lt;action 1&gt; #}# else { # &lt;action 2&gt; #} #interactive %&gt;%</p>
-</div>
+#play_wordle(solution, valid_list, num_guesses = 6)</code></pre>
 
 
 

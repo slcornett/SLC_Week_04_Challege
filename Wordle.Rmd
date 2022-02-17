@@ -76,24 +76,8 @@ play_wordle <- function(solution, valid_list, num_guesses=6){
       )
     output
     }
-  # setdiff(solution, evaluate_guess, LETTERS)
+ # setdiff(solution, evaluate_guess, LETTERS)
 }
 
-play_wordle(solution, valid_list, num_guesses = 6 )
+#play_wordle(solution, valid_list, num_guesses = 6)
 ```
-if (i==solution){
-      print("*")
-      } else {
-        print("+")
-      } else {
-          print("-")
-        }
-
-#  letters_left<-intersect(LETTERS, solutions)
- # Print(letters_left)
-  
-  #  <action 1>
-#}# else {
- # <action 2>
-#}
-  #interactive %>%
