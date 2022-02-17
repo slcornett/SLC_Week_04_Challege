@@ -216,40 +216,31 @@ str(solution_list) </code></pre>
 }
 solution &lt;-pick_solution(solution_list, word_length = 5)</code></pre>
 <pre><code>## [[1]]
-## [1] &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;E&quot; &quot;S&quot;</code></pre>
+## [1] &quot;T&quot; &quot;Y&quot; &quot;L&quot; &quot;E&quot; &quot;R&quot;</code></pre>
 <p><strong>Step 4</strong> should take three arguments: [1] the answer to the puzzle (the value of your solution variable), [2] a list of valid guesses (the contents of your valid_list variable), and [3] a value for “number of guesses,” which you should set to the original Wordle game default of 6.</p>
 <pre class="r"><code>play_wordle &lt;- function(solution, valid_list, num_guesses=6){
   instructions&lt;-&quot;Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!&quot;
   print(instructions)
-  print(&quot;Letters left:&quot;) 
-  LETTERS
+  print(&quot;Letters left:&quot;)
+        LETTERS
   guess &lt;- readline(&quot;Please input your word guess, then press Enter/Return to submit your guess:&quot;)
   toupper(guess)
   evaluate_guess&lt;-function(guess, solution){
     i&lt;-as.character(guess)
-    case_when(
+    output &lt;- case_when(
       i==solution ~ &quot;*&quot;,
       i%in%solution ~ &quot;+&quot;,
       i!=solution ~ &quot;-&quot;
-    )
-  #  ifelse(i==solution, &quot;*&quot;&quot;+&quot;, &quot;-&quot;) #* in the word and in the correct position, + in the word but in the wrong position,  -  not in the word.
+      )
+    output
     }
+  # setdiff(solution, evaluate_guess, LETTERS)
 }
 
-print(play_wordle(solution, valid_list, num_guesses = 6 ))</code></pre>
+play_wordle(solution, valid_list, num_guesses = 6 )</code></pre>
 <pre><code>## [1] &quot;Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!&quot;
 ## [1] &quot;Letters left:&quot;
-## Please input your word guess, then press Enter/Return to submit your guess:
-## function(guess, solution){
-##     i&lt;-as.character(guess)
-##     case_when(
-##       i==solution ~ &quot;*&quot;,
-##       i%in%solution ~ &quot;+&quot;,
-##       i!=solution ~ &quot;-&quot;
-##     )
-##   #  ifelse(i==solution, &quot;*&quot;&quot;+&quot;, &quot;-&quot;) #* in the word and in the correct position, + in the word but in the wrong position,  -  not in the word.
-##     }
-## &lt;environment: 0x7f85701c71e0&gt;</code></pre>
+## Please input your word guess, then press Enter/Return to submit your guess:</code></pre>
 <p>if (i==solution){ print(“*“) } else { print(”+“) } else { print(”-“) }</p>
 <div id="letters_left-intersectletters-solutions" class="section level1">
 <h1>letters_left&lt;-intersect(LETTERS, solutions)</h1>

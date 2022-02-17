@@ -63,22 +63,23 @@ should take three arguments: [1] the answer to the puzzle (the value of your sol
 play_wordle <- function(solution, valid_list, num_guesses=6){
   instructions<-"Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!"
   print(instructions)
-  print("Letters left:") 
-  LETTERS
+  print("Letters left:")
+        LETTERS
   guess <- readline("Please input your word guess, then press Enter/Return to submit your guess:")
   toupper(guess)
   evaluate_guess<-function(guess, solution){
     i<-as.character(guess)
-    case_when(
+    output <- case_when(
       i==solution ~ "*",
       i%in%solution ~ "+",
       i!=solution ~ "-"
-    )
-  #  ifelse(i==solution, "*""+", "-") #* in the word and in the correct position, + in the word but in the wrong position,  -  not in the word.
+      )
+    output
     }
+  # setdiff(solution, evaluate_guess, LETTERS)
 }
 
-print(play_wordle(solution, valid_list, num_guesses = 6 ))
+play_wordle(solution, valid_list, num_guesses = 6 )
 ```
 if (i==solution){
       print("*")
