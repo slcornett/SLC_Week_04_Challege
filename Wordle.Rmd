@@ -58,10 +58,7 @@ solution <-pick_solution(solution_list, word_length = 5)
 ```
 
 **Step 4**
-should take three arguments: 
-[1] the answer to the puzzle (the value of your solution variable), 
-[2] a list of valid guesses (the contents of your valid_list variable), and 
-[3] a value for “number of guesses,” which you should set to the original Wordle game default of 6
+should take three arguments: [1] the answer to the puzzle (the value of your solution variable), [2] a list of valid guesses (the contents of your valid_list variable), and [3] a value for “number of guesses,” which you should set to the original Wordle game default of 6.
 ```{r}
 play_wordle <- function(solution, valid_list, num_guesses=6){
   instructions<-"Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!"
@@ -71,25 +68,17 @@ play_wordle <- function(solution, valid_list, num_guesses=6){
   guess <- readline("Please input your word guess, then press Enter/Return to submit your guess:")
   toupper(guess)
   evaluate_guess<-function(guess, solution){
-    i<-guess
-    if_else(i==solution, "*", "+", missing="-")
-  }
+    i<-as.character(guess)
+    case_when(
+      i==solution ~ "*",
+      i%in%solution ~ "+",
+      i!=solution ~ "-"
+    )
+  #  ifelse(i==solution, "*""+", "-") #* in the word and in the correct position, + in the word but in the wrong position,  -  not in the word.
+    }
 }
 
 print(play_wordle(solution, valid_list, num_guesses = 6 ))
-#  letters_left<-intersect(LETTERS, solutions)
- # Print(letters_left)
-  
-#  i<-LETTERS
- # if (readline(prompt = "")==solution) {
-  #  <action 1>
-#}# else {
- # <action 2>
-#}
-  #interactive %>%
-    #readline(prompt = "") %>%
-    #toupper(old, )
-
 ```
 if (i==solution){
       print("*")
@@ -98,3 +87,12 @@ if (i==solution){
       } else {
           print("-")
         }
+
+#  letters_left<-intersect(LETTERS, solutions)
+ # Print(letters_left)
+  
+  #  <action 1>
+#}# else {
+ # <action 2>
+#}
+  #interactive %>%
