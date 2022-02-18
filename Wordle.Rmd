@@ -118,3 +118,4 @@ play_wordle <- function(solution, valid_list, num_guesses=6){
 } 
 play_wordle(solution, valid_list, num_guesses=6)
 ```
+the end.
