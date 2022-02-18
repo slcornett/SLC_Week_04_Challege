@@ -51,9 +51,10 @@ pick_solution<-function(solution_list,word_length=5){
   names(sl) <- c("word")
   sl <- dplyr::filter(sl, nchar(word)==word_length)
   word<-dplyr::sample_n(sl, size=1)
-  word<-word$word %>%
-    strsplit(word, split = "")
-  print(word)
+  word<-word$word %>% 
+    strsplit(split = "")
+  word<-word[[1]]
+  return(word)
 }
 solution <-pick_solution(solution_list, word_length = 5)
 ```
@@ -68,38 +69,52 @@ evaluate_guess<-function(guess, solution){
   text_result<-rep("-", word_length)
   for (i in 1:word_length){
     text_result[i]<- case_when(
-      guess[i] %in% solution & guess[i]==solution[i] ~  "*",
+      guess[i]==solution[i] ~  "*",
       guess[i] %in% solution & guess[i]!=solution[i] ~  "+",
-      guess[i] %nin% solution[i] ~  "-"
+      guess[i] %nin% solution ~  "-"
     )
-    print(text_result)
   }
+  return(text_result)
 }
 ```
-
+potential breaking point: evaluating for positional correctness (ie issue of double letters): for loop of what things are correct and if there's too many of a letter, make the correct letters a vector, eval the extra letter by comparing it against the vector of correct.
 ```{r}
 #playwordle
 play_wordle <- function(solution, valid_list, num_guesses=6){
   library(tidyverse)
   library(sjmisc)
   word_length<-length(solution)
-  print(paste0("Welcome to a R-Wordle. You have", num_guesses, " chances to guess a word with", word_length, "letters. Try not to get killed along the way. Best of luck!"))
+  print(paste0("Welcome to a R-Wordle. You have ", num_guesses, " chances to guess a word with", word_length, "letters. Try not to get killed along the way. Best of luck!"))
   print("Available Letters:")
   letters_left<-LETTERS
   print(letters_left)
-  guess_history<-data.frame(matrix(nrow=num_guesses, ncol=word_length))
-  results_history<-data.frame(matrix(nrow=num_guesses, ncol=word_length))
+  guess_history<-data.frame(matrix(nrow=word_length, ncol=num_guesses)) #so can output guesses at the end
+  results_history<-data.frame(matrix(nrow=word_length, ncol=num_guesses)) #so can output results at the end
   for(i in 1:num_guesses){
     guess<-readline("Please input your word guess, then press Enter/Return to submit your guess:") %>%
-    toupper()
+      toupper()
+    while(nchar(guess)>word_length | toupper(guess) %nin% valid_list){ #input invalid word or too long word
+      print("You fucked up. This word does not compute, please go again.")
+       guess<-readline("Please guess a valid word, then press Enter/Return to submit your guess:") %>%
+        toupper()
+    }
     guess <- strsplit(guess, split = "") [[1]]
     print(guess)
+    guess_history[,i]<-guess
     result<-evaluate_guess(guess, solution)
+    results_history[,i]<-result
     letters_left<-setdiff(letters_left, guess)
     print(letters_left)
+    print(result)
+    if(setequal(result,rep("*", word_length))){ #if you win only
+      print("You Win!! One step closer to global liberation from the desperate clasps of capitalism.")
+      print(guess_history)
+      return(results_history)
     }
-  return(result) 
-  return(letters_left)
+  }
+  print("Dummy, you lost. That's sad. Oh well.") #if you lose
+  print(results_history) 
+  print(guess_history)
 } 
 play_wordle(solution, valid_list, num_guesses=6)
 ```
