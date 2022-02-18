@@ -9,6 +9,7 @@ Preliminary
 library(tidyverse)
 library(readr)
 library(dplyr)
+library(sjmisc)
 ```
 **Step 1**
 
@@ -60,24 +61,47 @@ solution <-pick_solution(solution_list, word_length = 5)
 **Step 4**
 should take three arguments: [1] the answer to the puzzle (the value of your solution variable), [2] a list of valid guesses (the contents of your valid_list variable), and [3] a value for “number of guesses,” which you should set to the original Wordle game default of 6.
 ```{r}
+#helper function
+evaluate_guess<-function(guess, solution){
+  library(sjmisc)
+  word_length<-length(solution)
+  text_result<-rep("-", word_length)
+  for (i in 1:word_length){
+    i<-(guess)
+    output<- case_when(
+      i %in% solution & i==solution ~  "*",
+      i %in% solution & i!=solution ~  "+",
+      i %nin% solution ~  "-"
+    )
+    print(output)
+  }
+}
+```
+
+```{r}
+#playwordle
 play_wordle <- function(solution, valid_list, num_guesses=6){
-  instructions<-"Welcome to a R-Wordle. You have 6 chances to guess a word with 5 Letters. Try not to get killed along the way. Best of luck!"
-  print(instructions)
-  print("Letters left:")
-        LETTERS
-  guess <- readline("Please input your word guess, then press Enter/Return to submit your guess:")
-  toupper(guess)
-  evaluate_guess<-function(guess, solution){
-    i<-as.character(guess)
-    output <- case_when(
-      i==solution ~ "*",
-      i%in%solution ~ "+",
-      i!=solution ~ "-"
-      )
-    output
+  library(tidyverse)
+  library(sjmisc)
+  word_length<-length(solution)
+  print(paste0("Welcome to a R-Wordle. You have", num_guesses, " chances to guess a word with", word_length, "letters. Try not to get killed along the way. Best of luck!"))
+  print("Available Letters:")
+  letters_left<-LETTERS
+  print(letters_left)
+  guess_history<-data.frame(matrix(nrow=num_guesses, ncol=word_length))
+  results_history<-data.frame(matrix(nrow=num_guesses, ncol=word_length))
+  for(i in 1:num_guesses){
+    guess <- readline("Please input your word guess, then press Enter/Return to submit your guess:")
+    guess <- toupper(guess)
+    guess <- strsplit(guess, split = "") [[1]]
+    print(guess)
+    result<-evaluate_guess(guess, solution)
+    left_letters<- setdiff(letters_left, guess)
+    print(letters_left)
     }
- # setdiff(solution, evaluate_guess, LETTERS)
+  return(result)  
+#  return(letters_left)
 }
 
-#play_wordle(solution, valid_list, num_guesses = 6)
+play_wordle(solution, valid_list, num_guesses=6)  
 ```
