@@ -228,7 +228,7 @@ str(solution_list) </code></pre>
 }
 solution &lt;-pick_solution(solution_list, word_length = 5)</code></pre>
 <pre><code>## [[1]]
-## [1] &quot;M&quot; &quot;O&quot; &quot;T&quot; &quot;E&quot; &quot;L&quot;</code></pre>
+## [1] &quot;S&quot; &quot;W&quot; &quot;I&quot; &quot;S&quot; &quot;S&quot;</code></pre>
 <p><strong>Step 4</strong> should take three arguments: [1] the answer to the puzzle (the value of your solution variable), [2] a list of valid guesses (the contents of your valid_list variable), and [3] a value for “number of guesses,” which you should set to the original Wordle game default of 6.</p>
 <pre class="r"><code>#helper function
 evaluate_guess&lt;-function(guess, solution){
@@ -256,7 +256,7 @@ play_wordle &lt;- function(solution, valid_list, num_guesses=6){
   guess_history&lt;-data.frame(matrix(nrow=num_guesses, ncol=word_length))
   results_history&lt;-data.frame(matrix(nrow=num_guesses, ncol=word_length))
   for(i in 1:num_guesses){
-    guess &lt;- readline(&quot;Please input your word guess, then press Enter/Return to submit your guess:&quot;) %&gt;%
+    guess&lt;-readline(&quot;Please input your word guess, then press Enter/Return to submit your guess:&quot;) %&gt;%
     toupper()
     guess &lt;- strsplit(guess, split = &quot;&quot;) [[1]]
     print(guess)
@@ -266,8 +266,8 @@ play_wordle &lt;- function(solution, valid_list, num_guesses=6){
     }
   return(result) 
   return(letters_left)
-}
-play_wordle(solution, valid_list, num_guesses=6)  </code></pre>
+} 
+play_wordle(solution, valid_list, num_guesses=6)</code></pre>
 <pre><code>## [1] &quot;Welcome to a R-Wordle. You have6 chances to guess a word with1letters. Try not to get killed along the way. Best of luck!&quot;
 ## [1] &quot;Available Letters:&quot;
 ##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;

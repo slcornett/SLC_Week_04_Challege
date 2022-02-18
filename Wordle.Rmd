@@ -90,7 +90,7 @@ play_wordle <- function(solution, valid_list, num_guesses=6){
   guess_history<-data.frame(matrix(nrow=num_guesses, ncol=word_length))
   results_history<-data.frame(matrix(nrow=num_guesses, ncol=word_length))
   for(i in 1:num_guesses){
-    guess <- readline("Please input your word guess, then press Enter/Return to submit your guess:") %>%
+    guess<-readline("Please input your word guess, then press Enter/Return to submit your guess:") %>%
     toupper()
     guess <- strsplit(guess, split = "") [[1]]
     print(guess)
