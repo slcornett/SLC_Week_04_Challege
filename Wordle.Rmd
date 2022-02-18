@@ -67,13 +67,12 @@ evaluate_guess<-function(guess, solution){
   word_length<-length(solution)
   text_result<-rep("-", word_length)
   for (i in 1:word_length){
-    i<-(guess)
-    output<- case_when(
-      i %in% solution & i==solution ~  "*",
-      i %in% solution & i!=solution ~  "+",
-      i %nin% solution ~  "-"
+    text_result[i]<- case_when(
+      guess[i] %in% solution & guess[i]==solution[i] ~  "*",
+      guess[i] %in% solution & guess[i]!=solution[i] ~  "+",
+      guess[i] %nin% solution[i] ~  "-"
     )
-    print(output)
+    print(text_result)
   }
 }
 ```
@@ -91,16 +90,16 @@ play_wordle <- function(solution, valid_list, num_guesses=6){
   guess_history<-data.frame(matrix(nrow=num_guesses, ncol=word_length))
   results_history<-data.frame(matrix(nrow=num_guesses, ncol=word_length))
   for(i in 1:num_guesses){
-    guess <- readline("Please input your word guess, then press Enter/Return to submit your guess:")
-    guess <- toupper(guess)
+    guess <- readline("Please input your word guess, then press Enter/Return to submit your guess:") %>%
+    toupper()
     guess <- strsplit(guess, split = "") [[1]]
     print(guess)
     result<-evaluate_guess(guess, solution)
-    left_letters<- setdiff(letters_left, guess)
+    letters_left<-setdiff(letters_left, guess)
     print(letters_left)
     }
-  return(result)  
-#  return(letters_left)
+  return(result) 
+  return(letters_left)
 }
 
 play_wordle(solution, valid_list, num_guesses=6)  
