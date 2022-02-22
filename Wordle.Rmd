@@ -93,7 +93,7 @@ play_wordle <- function(solution, valid_list, num_guesses=6){
   for(i in 1:num_guesses){
     guess<-readline("Please input your word guess, then press Enter/Return to submit your guess:") %>%
       toupper()
-    while(nchar(guess)>word_length | toupper(guess) %nin% valid_list){ #input invalid word or too long word
+    while(nchar(guess)>word_length | nchar(guess)<word_length | toupper(guess) %nin% valid_list){ #input invalid word or too long word
       print("You fucked up. This word does not compute, please go again.")
        guess<-readline("Please guess a valid word, then press Enter/Return to submit your guess:") %>%
         toupper()
